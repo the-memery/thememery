@@ -1,0 +1,133 @@
+.artist-profile {
+    width: 100%;
+    margin: 200px 0 0 0;
+}
+
+@media (max-width: 480px) {
+    .artist-profile {
+        margin: 3em 0 0 0;
+    }
+}
+
+.artist-profile .left {
+    float: left;
+    width: 50%;
+    padding: 0 0 0 200px;
+}
+
+@media (max-width: 480px) {
+    .artist-profile .left {
+        width: 100%;
+        padding: 0 0 4em 0;
+    }
+}
+
+.artist-profile .left h1 {
+    position: fixed;
+    top: calc(200px + 175px + 20px);
+    font-size: 50px;
+    color: rgb(25, 0, 255);
+}
+
+@media (max-width: 480px) {
+    .artist-profile .left h1 {
+        /* font-size: 70px; */
+        /* font-size: calc(50px + 0.100625vw); */
+        font-size: 15vw;
+        color: rgb(25, 0, 255);
+        position: static;
+        top: 0;
+        /* font-size: 95px;
+        text-align: center; */
+    }
+}
+
+.artist-profile .right {
+    float: right;
+    width: 50%;
+    padding: 0 200px 0 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+    .artist-profile .right {
+        float: center;
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+.artist-profile .right .last-artwork {
+    position: absolute;
+    width: calc(100vh - 200px);
+    display: grid;
+    grid-template-columns: 4fr 1fr
+}
+
+@media (max-width: 480px) {
+    .artist-profile .right .last-artwork {
+        display: none;
+    }
+}
+
+.artist-profile .right .last-artwork .image {
+    display: flex;
+    justify-self: center;
+}
+
+.artist-profile .right .last-artwork .text {
+    display: flex;
+    align-self: center;
+}
+
+.artist-profile .right .last-artwork .text .title {
+    position: absolute;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.artist-profile .right .last-artwork .text .technique {
+    position: relative;
+    width: 100%;
+    top: 30px;
+}
+
+.artist-profile .right .grid-container {
+    position: relative;
+    top: 425px;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 480px) {
+    .artist-profile .right .grid-container {
+        position: static;
+        top: 0;
+        display: grid;
+        grid-gap: 10px;
+        grid-auto-rows: auto; /* Modification ici */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.artist-profile .right .grid-container .image {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    max-width: 100%; /* Modification ici */
+    height: auto; /* Modification ici */
+}
+
+@media (max-width: 480px) {
+    .artist-profile .right .grid-container .image {
+        height: auto;
+    }
+}
+
+.artist-profile .right .grid-container {
+    margin: 10px; /* Ajout de cette règle */
+}
