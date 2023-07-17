@@ -14,4 +14,4 @@ EXPOSE 8090
 
 CMD ["mvn", "spring-boot:run"]
 
-LABEL org.opencontainers.image.source="https://github.com/corentinbaudet/thememery"
+#LABEL org.opencontainers.image.source="https://github.com/corentinbaudet/thememery"
