@@ -36,7 +36,8 @@ const LogIn = () => {
           await response.json().then((data) => {
             Cookies.set("jwt", data.token, {
               expires: 1,
-              secure: true,
+              secure: false,
+              sameSite: "lax",
             });
             isConnected = true;
           });

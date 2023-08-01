@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
 import "../register-components/register.css";
+import APIRequest from "../services/fetch-service";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -10,13 +10,16 @@ function Register() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post("register", {
+      await APIRequest("register", "POST", null, {
         username: username,
         password: password,
-      });
-      alert("User Registration Successfully");
-      setUsername("");
-      setPassword("");
+      }).then(
+        async () => {
+          alert("User Registration Successfully");
+          setUsername("");
+          setPassword("");
+        }
+      );
     } catch (err) {
       alert("User Registration Failed");
     }

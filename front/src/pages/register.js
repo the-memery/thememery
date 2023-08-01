@@ -5,50 +5,14 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import Axios from "axios";
-import axios from "../api/axios";
-import style from "../styles/index.css";
 import Info from "../components/info";
+import APIRequest from "../services/fetch-service";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/register";
 
 const Register = () => {
-  //     const [usernameReg, setUsernameReg] = useState("");
-  //     const [passwordReg, setPasswordReg] = useState("");
-
-  //     const register = () => {
-  //       Axios.post("http://localhost:8090/register", {
-  //         username: usernameReg,
-  //         password: passwordReg,
-  //       }).then((response) => {
-  //         console.log(response);
-  //       });
-  //     };
-
-  //     return (
-  //       <div className="App">
-  //         <div className="registration">
-  //           <h1>Registration</h1>
-  //           <label>Username</label>
-  //           <input
-  //             type="text"
-  //             onChange={(e) => {
-  //               setUsernameReg(e.target.value);
-  //             }}
-  //           />
-  //           <label>Password</label>
-  //           <input
-  //             type="text"
-  //             onChange={(e) => {
-  //               setPasswordReg(e.target.value);
-  //             }}
-  //           />
-  //           <button onClick={register}>Register</button>
-  //         </div>
-  //       </div>
-  //     );
   const userRef = useRef();
   const errRef = useRef();
 
@@ -94,24 +58,21 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        //JSON.stringify({ user, pwd }),
-        JSON.stringify({ username, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          //   //withCredentials: true,
+      await APIRequest("register", "POST", null, {
+        username: username,
+        password: password,
+      }).then(
+        async (response) => {
+          if (response.status === 201) {
+            setSuccess(true);
+            //clear state and controlled inputs
+            //need value attrib on inputs for this
+            setUsername("");
+            setPassword("");
+            setMatchPwd("");
+          }
         }
       );
-      console.log(response?.data);
-      console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
-      setSuccess(true);
-      //clear state and controlled inputs
-      //need value attrib on inputs for this
-      setUsername("");
-      setPassword("");
-      setMatchPwd("");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

@@ -65,7 +65,8 @@ function App() {
   useEffect(() => {
     Cookies.set("currentUser", JSON.stringify(currentUser), {
       expires: 1,
-      secure: true,
+      secure: false,
+      sameSite: "lax",
     });
   }, [currentUser]);
 
